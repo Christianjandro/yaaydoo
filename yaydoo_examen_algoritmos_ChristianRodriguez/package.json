@@ -7,5 +7,9 @@
     "test": "mocha test/ --timeout 99999"
   },
   "author": "Christian Alejandro Rodriguez Escalon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^9.1.1",
+    "chai": "^4.3.4"
+  }
 }
