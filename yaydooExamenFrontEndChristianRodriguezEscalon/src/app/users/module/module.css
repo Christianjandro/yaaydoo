@@ -1,0 +1,11 @@
+.far{
+  cursor: pointer;
+}
+
+.val-success{
+  color: #319804
+}
+
+.val-err{
+  color: #d32222
+}

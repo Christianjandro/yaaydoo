@@ -1,0 +1,124 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col lg-12">
+      <div class="card">
+        <div class="card-body text-center">
+          <h3>Usuarios</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <h5>{{action}} Usuario</h5>
+          <form [formGroup]="form" (ngSubmit)="addUser()">
+            <input formControlName="id" type="hidden">
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="far fa-user"
+                  [class.val-success]="form.get('name')?.valid"
+                  [class.val-err]="form.get('name')?.invalid && form.get('name')?.touched"
+                  ></i>
+              </span>
+              <input formControlName="name" type="text" class="form-control" placeholder="Nombre" />
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="far fa-envelope"
+                     [class.val-success]="form.get('email')?.valid"
+                     [class.val-err]="form.get('email')?.invalid && form.get('email')?.touched"
+                  ></i>
+              </span>
+              <input formControlName="email" type="text" class="form-control" placeholder="Email" />
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="fas fa-key"
+                     [class.val-success]="form.get('password')?.valid"
+                     [class.val-err]="form.get('password')?.invalid && form.get('password')?.touched"
+                  ></i>
+              </span>
+              <input formControlName="password" type="password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="far fa-check-circle"
+                     [class.val-success]="form.get('confirm')?.value == form.get('password')?.value && form.get('confirm')?.touched"
+                     [class.val-err]="form.get('confirm')?.value != form.get('password')?.value && form.get('confirm')?.touched"
+                  ></i>
+              </span>
+              <input
+
+                formControlName="confirm" type="password" class="form-control" placeholder="Confirmar Password" />
+            </div>
+
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="fas fa-map-marked-alt"
+                     [class.val-success]="form.get('address')?.valid"
+                     [class.val-err]="form.get('address')?.invalid && form.get('address')?.touched"
+                  ></i>
+              </span>
+              <input formControlName="address" type="text" class="form-control" placeholder="Dirección" />
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="fas fa-phone"
+                     [class.val-success]="form.get('telephone')?.valid"
+                     [class.val-err]="form.get('telephone')?.invalid && form.get('telephone')?.touched"
+                  ></i>
+              </span>
+              <input maxlength="10" formControlName="telephone" type="text" class="form-control" placeholder="Teléfono" />
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                  <i class="far fa-calendar-alt"
+                     [class.val-success]="form.get('dateofbirth')?.valid"
+                     [class.val-err]="form.get('dateofbirth')?.invalid && form.get('dateofbirth')?.touched"
+                  ></i>
+              </span>
+              <input maxlength="10" formControlName="dateofbirth" type="text" class="form-control" placeholder="Fecha de nacimiento" />
+            </div>
+
+            <div class="d-grid gap-2">
+              <button [disabled]="form.invalid" type="submit" class="btn btn-lg btn-success">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <h5>Lista de usuarios</h5>
+          <table class="table">
+            <thead>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Fecha de nacimiento</th>
+            <th>Edad</th>
+            <th>Actualizar</th>
+            <th>Borrar</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of listUser;">
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.address}}</td>
+              <td>{{user.telephone}}</td>
+              <td>{{user.dateofbirth}}</td>
+              <td>{{user.age}}</td>
+              <td><i (click)="editUser(user)" class="far fa-edit text-info"></i></td>
+              <td><i (click)="deleteUser(user.id)" class="far fa-trash-alt text-danger"></i></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
